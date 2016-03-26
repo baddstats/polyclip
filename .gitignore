@@ -1,0 +1,23 @@
+# Emacs backups
+*~
+
+# History files
+.Rhistory
+
+# Example code in package build process
+*-Ex.R
+
+# R data files from past sessions
+.Rdata
+.Rproj.user
+
+# R-studio files
+polyclip.Rproj
+
+# covr files
+src/*.gcov
+src/*.gcda
+src/*.gcno
+
+# .o files
+src/*o
