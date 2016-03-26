@@ -1,0 +1,3 @@
+export(polyclip,polyoffset,polylineoffset,polysimplify,polyminkowski)
+useDynLib(polyclip,
+          "Cclipbool","Cpolyoffset","Clineoffset","Csimplify","Cminksum")
