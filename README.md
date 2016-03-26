@@ -12,10 +12,6 @@ an R port of Angus Johnson's library
 
 ## Version
 
-The code in this repository is a development version, which may be
-newer than the official release of `polyclip` on 
-[CRAN](http://cran.r-project.org).
-
 This version of `polyclip` is derived from 
 Clipper C++ library version 6.4.0 which was obtained from the
 [Sourceforge repository](https://sourceforge.net/projects/polyclipping).
@@ -25,6 +21,13 @@ and error messages must go through R's error handler).
 
 ## Installation
 
+The current official release of `polyclip` is available
+on [CRAN](http://cran.r-project.org/web/packages/polyclip)
+and can be downloaded and installed automatically
+using the R command `install.packages`. 
+
+The code in this repository is the development version,
+which may be newer than the official release.
 The easiest way to install the development version of `polyclip` 
 from github is through the `devtools` package:
 
