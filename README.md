@@ -13,7 +13,7 @@ an R port of Angus Johnson's library
 ## Version
 
 This version of `polyclip` is derived from 
-Clipper C++ library version 6.4.0 which was obtained from the
+Clipper C++ library version `6.4.0` which was obtained from the
 [Sourceforge repository](https://sourceforge.net/projects/polyclipping).
 Minor changes have been made to the C++ code to satisfy the
 requirements for R packages (namely, data type declarations must be portable,
