@@ -1,36 +1,17 @@
-language: c
-sudo: required
+language: r
+r:
+  - release
+  - devel
+sudo: false
+cache: packages
 
-before_install:
-  - curl -OL https://raw.githubusercontent.com/metacran/r-builder/master/pkg-build.sh
-  - chmod 755 pkg-build.sh
-  - ./pkg-build.sh bootstrap
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq libgsl0-dev bwidget
+os:
+  - linux
+  - osx
 
-install:
-  - ./pkg-build.sh install_deps
-  - ./pkg-build.sh install_github jimhester/covr yihui/knitr
+r_github_packages:
+  - jimhester/covr
 
-script:
-  - ./pkg-build.sh run_tests
-
-after_failure:
-  - ./pkg-build.sh dump_logs
-  
 after_success:
-  - if [[ ! -z "$COVERAGE" ]];then ./pkg-build.sh run_script -e 'covr::codecov(type=Sys.getenv("COVERAGE"), quiet = FALSE)'; fi
-
-notifications:
-  email:
-    on_success: change
-    on_failure: change
-
-env:
-  global:
-    - _R_CHECK_FORCE_SUGGESTS_=false
-  matrix:
-    - RVERSION=release
-    - RVERSION=devel COVERAGE=vignette R_CHECK_ARGS="--no-tests --no-build-vignettes --no-manual"
-    - RVERSION=devel COVERAGE=test R_CHECK_ARGS="--no-tests --no-build-vignettes --no-manual"
-    - RVERSION=devel COVERAGE=example R_CHECK_ARGS="--no-tests --no-build-vignettes --no-manual"
+  - R CMD INSTALL $PKG_TARBALL
+  - Rscript -e 'covr::codecov(type = "examples")'
