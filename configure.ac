@@ -1,26 +1,26 @@
-AC_INIT(polyclip,[1.3-2])
-CXX=`"${R_HOME}/bin/R" CMD config CXX`
-CXXFLAGS=`"${R_HOME}/bin/R" CMD config CXXFLAGS`
-CPPFLAGS=`"${R_HOME}/bin/R" CMD config CPPFLAGS`
-dnl Check for availability of 64-bit integer types in C++
+AC_INIT(polyclip,[1.5-2])
 AC_PROG_CXX
-AC_LANG([C++])
 dnl Check for presence of C++11 
-dnl ................................
-dnl I can't get the following to work, even after reinstalling autoconf/m4
-dnl AX_CXX_COMPILE_STDCXX_11([noext],[optional])
-dnl if test ${HAVE_CXX11}; then
-dnl    echo "C++11 present"
-dnl else
-dnl    echo "C++11 absent"
-dnl fi
-dnl ................................
+CXX1X=`"${R_HOME}/bin/R" CMD config CXX1X`
+if test "${CXX1X}" != ""; then
+   echo "Compiling under C++11"
+   CXX1XSTD=`"${R_HOME}/bin/R" CMD config CXX1XSTD`
+   CXX="$(CXX1X) $(CXX1XSTD)"
+   CXXFLAGS=`"${R_HOME}/bin/R" CMD config CXX1XFLAGS`
+else
+   echo "C++11 is not supported; compiling under vanilla C++"
+   CXX=`"${R_HOME}/bin/R" CMD config CXX`
+   CXXFLAGS=`"${R_HOME}/bin/R" CMD config CXXFLAGS`
+fi
+CPPFLAGS=`"${R_HOME}/bin/R" CMD config CPPFLAGS`
+AC_LANG([C++])
+dnl Check for availability of 64-bit integer types in C++
 dnl Signed 64-bit integer 
 long64=""
 name64="signed 64-bit integers (cInt)"
-dnl if test "${HAVE_CXX11}"; then
-dnl    POLYCLIP_LONG64="long long"
-dnl else 
+if test "${CXX1X}" != ""; then
+   POLYCLIP_LONG64="signed long long"
+else 
    AC_CHECK_TYPES([int64_t],[long64="int64_t"],[],[#include <stdint.h>])
    if test "${long64}" != ""; then
      POLYCLIP_LONG64="${long64}"
@@ -43,15 +43,15 @@ dnl else
        fi
      fi
    fi
-dnl fi
+fi
 echo "     In src/clipper.h, ${name64}"
 echo "     will be declared as '${long64}'"
 dnl Unsigned 64-bit integer 
 ulong64=""
 uname64="unsigned 64-bit integers (cUInt)"
-dnl if test ${HAVE_CXX11}; then
-dnl   POLYCLIP_ULONG64="unsigned long long"
-dnl else 
+if test "${CXX1X}" != ""; then
+    POLYCLIP_ULONG64="unsigned long long"
+else 
   AC_CHECK_TYPES([uint64_t],[ulong64="uint64_t"],[],[#include <stdint.h>])
   if test "${ulong64}" != ""; then
     POLYCLIP_ULONG64="${ulong64}" 
@@ -74,7 +74,7 @@ dnl else
       fi
     fi
   fi
-dnl fi
+fi
 echo "     In src/clipper.h, ${uname64}"
 echo "     will be declared as '${ulong64}'"
 dnl Put results in C++ preprocessor flags 
