@@ -13,8 +13,9 @@ an R port of Angus Johnson's library
 ## Version
 
 This version of `polyclip` is derived from 
-Clipper C++ library version `6.4.0` which was obtained from the
-[Sourceforge repository](https://sourceforge.net/projects/polyclipping).
+Clipper C++ library version `6.4.0 [r496]` which was obtained from the
+[Sourceforge repository](https://sourceforge.net/projects/polyclipping)
+(click `Code` then `Download snapshot`).
 Minor changes have been made to the C++ code to satisfy the
 requirements for R packages (namely, data type declarations must be portable,
 and error messages must go through R's error handler). 
