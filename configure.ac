@@ -1,4 +1,4 @@
-AC_INIT(polyclip,[1.5-3])
+AC_INIT(polyclip,[1.5-4])
 AC_PROG_CXX
 AC_LANG([C++])
 dnl Check for presence of C++11 
@@ -7,13 +7,14 @@ if test "${CXX1X}" != ""; then
    echo "compiling under C++11"
    CXX1XSTD=`"${R_HOME}/bin/R" CMD config CXX1XSTD`
    CXX="${CXX1X} ${CXX1XSTD}"
+   POLYCLIP_CXX_DECLAR="CXX_STD = CXX11"
    CXXFLAGS=`"${R_HOME}/bin/R" CMD config CXX1XFLAGS`
 else
    echo "C++11 is not supported; compiling under vanilla C++"
    CXX=`"${R_HOME}/bin/R" CMD config CXX`
+   POLYCLIP_CXX_DECLAR=""
    CXXFLAGS=`"${R_HOME}/bin/R" CMD config CXXFLAGS`
 fi
-echo "compiler directive CXX = ${CXX}"
 CPPFLAGS=`"${R_HOME}/bin/R" CMD config CPPFLAGS`
 dnl Check for availability of 64-bit integer types in C++
 dnl Signed 64-bit integer 
@@ -82,7 +83,10 @@ echo "     In src/clipper.h, ${uname64}"
 echo "     will be declared as '${ulong64}'"
 dnl Put results in C++ preprocessor flags 
 POLYCLIP_CPPFLAGS="-DPOLYCLIP_LONG64=\"${POLYCLIP_LONG64}\" -DPOLYCLIP_ULONG64=\"${POLYCLIP_ULONG64}\""
+POLYCLIP_CXXFLAGS="${CXXFLAGS}"
 AC_SUBST(POLYCLIP_CPPFLAGS)
+AC_SUBST(POLYCLIP_CXXFLAGS)
+AC_SUBST(POLYCLIP_CXX_DECLAR)
 AC_CONFIG_FILES([src/Makevars])
 AC_OUTPUT
 
