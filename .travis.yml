@@ -10,9 +10,9 @@ os:
 r_github_packages:
 - jimhester/covr
 after_success:
-- R CMD INSTALL $PKG_TARBALL
-- if [ "$TRAVIS_OS_NAME" == "osx" ]; then R CMD INSTALL --build $PKG_TARBALL; fi
-- Rscript -e 'covr::codecov(type = "examples")'
+- if [ "$TRAVIS_R_VERSION != devel && ("$TRAVIS_OS_NAME" == "osx") ]; then R CMD INSTALL --build $PKG_TARBALL; fi
+- if [ "$TRAVIS_R_VERSION != devel && ("$TRAVIS_OS_NAME" == "linux") ]; then R CMD INSTALL $PKG_TARBALL; fi
+- if [ "$TRAVIS_R_VERSION != devel && ("$TRAVIS_OS_NAME" == "linux") ]; then Rscript -e 'covr::codecov(type = "examples")'; fi
 deploy:
   provider: releases
   api_key:
@@ -22,4 +22,4 @@ deploy:
   file: polyclip_*.t*gz
   on:
     tags: true
-    condition: "$TRAVIS_R_VERSION != devel"
+    condition: "$TRAVIS_R_VERSION != devel && ($TRAVIS_OS_NAME == osx)"
