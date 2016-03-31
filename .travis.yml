@@ -10,14 +10,15 @@ os:
 r_github_packages:
 - jimhester/covr
 after_success:
-- R CMD INSTALL $PKG_TARBALL
+- R CMD INSTALL --build $PKG_TARBALL
 - Rscript -e 'covr::codecov(type = "examples")'
 deploy:
   provider: releases
   api_key:
     secure: qau8PJIhPE6JlM+2mhGPuacL6MjUMd9HITKGUoXUwLBbtHKsYDYwLRWnqLDnsexOUeZm/dWHpixPD8TxKIrkT1P59jRkHKhC0k0tgs6NMB+JjRRFGzFp6m0DSkpei/6/F6owR9lWXyqxL8j+ownzBNiTtX356yr+XcLBZz/yxNJYD7FjLA0NDjoAEY92vmczNZRXJcjq9i3gehok3PHvybBZvi+sXvjorvLbewy36DRypA7TpAmgwqOi4Flxzbb8VFO6AsPwydZtI3PCpnd9KcaQ3uirb1De5Q1PWNIENdzLCGl9A9LOAKiMLa4k8KrhbmynBihvUisSwhoLEF0GI2qB4P191KOAjsEM9uWHrX3UqvlatGA/bhDtqwjoDyHeXSGv7USerk6CFzk2+kh67yCOZGg5HFB62lMxxXWzxMEfw9kisXV+aL7zeZjfsXHJ1sXlvAsEx2sk6NIYGSkQJcUbKL6UhJ15EJw1X33c3xfzFh66QzUELJ0bkVm5hFLvLPtcKGSU2NmLQArIYJbCf1rcXkjHQDl0IBYWK4dBXU27kckSiCWV71NMDIGUSV6SuGaPGCyRH6trmSjNdmMCh/5zOo8MBvm/D8y/yUrkj+qkQ7+XUSPFfL7xHzakrdlHE39L35IFIhiKzNTwy3LWblupYHStN81TgANwMVJc1gc=
   skip_cleanup: true
+  file_glob: true
   file: polyclip_*.t*gz
   on:
     tags: true
-    r: release
+    condition: "TRAVIS_R_VERSION=3.2.4"
