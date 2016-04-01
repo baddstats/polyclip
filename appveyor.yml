@@ -51,6 +51,8 @@ deploy:
     secure: TAti5R3iqVWn6zyRuWY/0YbgmJs+5M2Ipync4rs9UdyszqOtK7gzgCS1yWCJIrMK
   artifact: /\*_*.zip/
   on:
-    branch: master
+    branch:
+      - master
+      - /v\d\.\d-\d/
     appveyor_repo_tag: true
 
