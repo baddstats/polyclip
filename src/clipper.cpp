@@ -2680,7 +2680,7 @@ void Clipper::ProcessHorizontal(TEdge *horzEdge)
     eMaxPair = GetMaximaPair(eLastHorz);
 
   MaximaList::const_iterator maxIt;
-  MaximaList::const_reverse_iterator maxRit;
+  MaximaList::const_reverse_iterator maxRit, maxRend;
   if (m_Maxima.size() > 0)
   {
       //get the first maxima in range (X) ...
@@ -2694,8 +2694,9 @@ void Clipper::ProcessHorizontal(TEdge *horzEdge)
       else
       {
           maxRit = m_Maxima.rbegin();
-          while (maxRit != m_Maxima.rend() && *maxRit > horzEdge->Bot.X) maxRit++;
-          if (maxRit != m_Maxima.rend() && *maxRit <= eLastHorz->Top.X)
+	  maxRend = m_Maxima.rend();
+          while (maxRit != maxRend && *maxRit > horzEdge->Bot.X) maxRit++;
+          if (maxRit != maxRend && *maxRit <= eLastHorz->Top.X)
               maxRit = m_Maxima.rend();
       }
   }
@@ -2726,7 +2727,8 @@ void Clipper::ProcessHorizontal(TEdge *horzEdge)
             }
             else
             {
-                while (maxRit != m_Maxima.rend() && *maxRit > e->Curr.X)
+	      maxRend = m_Maxima.rend();
+                while (maxRit != maxRend && *maxRit > e->Curr.X)
                 {
                   if (horzEdge->OutIdx >= 0 && !IsOpen)
                     AddOutPt(horzEdge, IntPoint(*maxRit, horzEdge->Bot.Y));
