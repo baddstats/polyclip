@@ -53,7 +53,8 @@ polysimplify <-
     storage.mode(pft) <- "integer"
     storage.mode(x0) <- storage.mode(y0) <- storage.mode(eps) <- "double"
     result <- .Call("Csimplify",
-                    A, pft, x0, y0, eps)
+                    A, pft, x0, y0, eps,
+                    PACKAGE = "polyclip")
     return(aspolygonlist(result))
   }
 
@@ -98,7 +99,8 @@ polyclip <-
     storage.mode(x0) <- storage.mode(y0) <- storage.mode(eps) <- "double"
     ans <- .Call("Cclipbool",
                  A, B, pftA, pftB, ct,
-                 x0, y0, eps)
+                 x0, y0, eps,
+                 PACKAGE = "polyclip")
     return(aspolygonlist(ans))
   }
 
@@ -134,7 +136,8 @@ polyoffset <-
       storage.mode(miterlim) <- storage.mode(arctol) <- "double"
     storage.mode(x0) <- storage.mode(y0) <- storage.mode(eps) <- "double"
     ans <- .Call("Cpolyoffset", A, delta, jt,
-                 miterlim, arctol, x0, y0, eps)
+                 miterlim, arctol, x0, y0, eps,
+                 PACKAGE = "polyclip")
     return(aspolygonlist(ans))
   }
 
@@ -182,7 +185,8 @@ polylineoffset <-
       storage.mode(arctol) <- "double"
     storage.mode(x0) <- storage.mode(y0) <- storage.mode(eps) <- "double"
     ans <- .Call("Clineoffset", A, delta, jt, et,
-                 miterlim, arctol, x0, y0, eps)
+                 miterlim, arctol, x0, y0, eps,
+                 PACKAGE = "polyclip")
     return(aspolygonlist(ans))
   }
 
@@ -221,6 +225,7 @@ polyminkowski <-
     storage.mode(x0) <- storage.mode(y0) <- storage.mode(eps) <- "double"
     storage.mode(closed) <- "logical"
     result <- .Call("Cminksum",
-                    A, B, closed, x0, y0, eps)
+                    A, B, closed, x0, y0, eps,
+                    PACKAGE = "polyclip")
     return(aspolygonlist(result))
   }
