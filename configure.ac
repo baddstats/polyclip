@@ -1,4 +1,4 @@
-AC_INIT(polyclip,[1.5-4])
+AC_INIT(polyclip,[1.6-1])
 AC_PROG_CXX
 AC_LANG([C++])
 dnl Check for presence of C++11 
