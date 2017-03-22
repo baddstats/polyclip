@@ -1,12 +1,14 @@
 language: r
-r:
-- release
-- devel
+matrix:
+  include:
+    - os: osx
+      r: release
+    - os: linux
+      r: release
+    - os: linux
+      r: devel
 sudo: false
 cache: packages
-os:
-- linux
-- osx
 after_success:
 - if [[ "$TRAVIS_R_VERSION" != "devel" && ("$TRAVIS_OS_NAME" == "osx") ]]; then R CMD INSTALL --build $PKG_TARBALL; fi
 - if [[ "$TRAVIS_R_VERSION" != "devel" && ("$TRAVIS_OS_NAME" == "linux") ]]; then Rscript -e 'install.packages("covr");covr::codecov(type="all")'; fi
