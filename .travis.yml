@@ -9,7 +9,7 @@ os:
 - osx
 after_success:
 - if [[ "$TRAVIS_R_VERSION" != "devel" && ("$TRAVIS_OS_NAME" == "osx") ]]; then R CMD INSTALL --build $PKG_TARBALL; fi
-- if [[ "$TRAVIS_R_VERSION" != "devel" && ("$TRAVIS_OS_NAME" == "linux") ]]; then Rscript -e 'install.packages("covr", type = "source");covr::codecov()'; fi
+- if [[ "$TRAVIS_R_VERSION" != "devel" && ("$TRAVIS_OS_NAME" == "linux") ]]; then Rscript -e 'install.packages("covr");covr::codecov(type="all")'; fi
 d,eploy:
   provider: releases
   api_key:
