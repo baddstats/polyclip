@@ -1,2 +1,2 @@
 export(polyclip,polyoffset,polylineoffset,polysimplify,polyminkowski)
-useDynLib(polyclip, .registration=TRUE)
+useDynLib(polyclip, .registration=TRUE, .fixes="e")

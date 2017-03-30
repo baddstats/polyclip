@@ -52,7 +52,7 @@ polysimplify <-
     A <- ensuredouble(A)
     storage.mode(pft) <- "integer"
     storage.mode(x0) <- storage.mode(y0) <- storage.mode(eps) <- "double"
-    result <- .Call("Csimplify",
+    result <- .Call(eCsimplify,
                     A, pft, x0, y0, eps,
                     PACKAGE = "polyclip")
     return(aspolygonlist(result))
@@ -97,7 +97,7 @@ polyclip <-
     B <- ensuredouble(B)
     storage.mode(ct) <- storage.mode(pftA) <- storage.mode(pftB) <- "integer"
     storage.mode(x0) <- storage.mode(y0) <- storage.mode(eps) <- "double"
-    ans <- .Call("Cclipbool",
+    ans <- .Call(eCclipbool,
                  A, B, pftA, pftB, ct,
                  x0, y0, eps,
                  PACKAGE = "polyclip")
@@ -135,7 +135,8 @@ polyoffset <-
     storage.mode(delta) <-
       storage.mode(miterlim) <- storage.mode(arctol) <- "double"
     storage.mode(x0) <- storage.mode(y0) <- storage.mode(eps) <- "double"
-    ans <- .Call("Cpolyoffset", A, delta, jt,
+    ans <- .Call(eCpolyoffset,
+                 A, delta, jt,
                  miterlim, arctol, x0, y0, eps,
                  PACKAGE = "polyclip")
     return(aspolygonlist(ans))
@@ -184,7 +185,8 @@ polylineoffset <-
     storage.mode(delta) <- storage.mode(miterlim) <-
       storage.mode(arctol) <- "double"
     storage.mode(x0) <- storage.mode(y0) <- storage.mode(eps) <- "double"
-    ans <- .Call("Clineoffset", A, delta, jt, et,
+    ans <- .Call(eClineoffset,
+                 A, delta, jt, et,
                  miterlim, arctol, x0, y0, eps,
                  PACKAGE = "polyclip")
     return(aspolygonlist(ans))
@@ -224,7 +226,7 @@ polyminkowski <-
     B <- ensuredouble(B)
     storage.mode(x0) <- storage.mode(y0) <- storage.mode(eps) <- "double"
     storage.mode(closed) <- "logical"
-    result <- .Call("Cminksum",
+    result <- .Call(eCminksum,
                     A, B, closed, x0, y0, eps,
                     PACKAGE = "polyclip")
     return(aspolygonlist(result))
