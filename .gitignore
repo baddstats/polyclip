@@ -21,3 +21,5 @@ src/*.gcno
 
 # .o files
 src/*o
+
+configure
