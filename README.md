@@ -30,17 +30,17 @@ using the R command `install.packages`.
 The code in this repository is the development version,
 which may be newer than the official release.
 The easiest way to install the development version of `polyclip` 
-from github is through the `devtools` package:
+from github is through the `remotes` package:
 
 ```R
-require(devtools)
+require(remotes)
 install_github('baddstats/polyclip')
 ```
 
-If you don't have `devtools` installed you should first run
+If you don't have `remotes` installed you should first run
 
 ```R
-install.packages('devtools')
+install.packages('remotes')
 ```
 
 ## Bug reports 
