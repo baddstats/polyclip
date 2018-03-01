@@ -54,6 +54,13 @@ void ScaleFromPath(ClipperLib::Path &p, double *x, double *y, int nmax, int *n,
   }
 }
 
+void ScaleToPoint(double x, double y, ClipperLib::IntPoint &p,
+		  double x0, double y0, double eps)
+{
+  p.X = (cInt) ((x - x0)/eps);
+  p.Y = (cInt) ((y - y0)/eps);
+}
+
 extern "C" {
   SEXP Csimplify(SEXP A,
 		 SEXP pft,
@@ -638,6 +645,63 @@ extern "C" {
     }
 
     UNPROTECT(7 + 3*m); // 6 arguments + out + m * (outi, xouti, youti)
+    return(out);
+  }
+}
+
+// point in polygon test ///////////////////
+
+extern "C" {
+  SEXP Cpiptest(SEXP P,  // test points, list(x, y)
+		SEXP A,  // single polygon, list(x,y) 
+		SEXP X0,
+		SEXP Y0,
+		SEXP Eps
+		){ 
+    int na, np, i;
+    double *xa, *ya, *xp, *yp;
+    double x0, y0, eps;
+    int *result;
+    SEXP out;
+
+    // protect arguments from garbage collector    
+    PROTECT(P   = AS_LIST(P));
+    PROTECT(A   = AS_LIST(A));
+    PROTECT(X0  = AS_NUMERIC(X0));
+    PROTECT(Y0  = AS_NUMERIC(Y0));
+    PROTECT(Eps = AS_NUMERIC(Eps));
+
+    // Get test point coordinates
+    np = LENGTH(VECTOR_ELT(P, 0));
+    xp = NUMERIC_POINTER(VECTOR_ELT(P, 0));
+    yp = NUMERIC_POINTER(VECTOR_ELT(P, 1));
+
+    // Get polygon coordinates
+    na = LENGTH(VECTOR_ELT(A, 0));
+    xa = NUMERIC_POINTER(VECTOR_ELT(A, 0));
+    ya = NUMERIC_POINTER(VECTOR_ELT(A, 1));
+    
+    // Get scale parameters
+    x0 = *(NUMERIC_POINTER(X0));
+    y0 = *(NUMERIC_POINTER(Y0));
+    eps = *(NUMERIC_POINTER(Eps));
+
+    // copy and scale polygon
+    ClipperLib::Path pathA;
+    ScaleToPath(xa, ya, na, pathA, x0, y0, eps);
+
+    // Allocate space for output
+    PROTECT(out = NEW_INTEGER(np));
+    result = INTEGER_POINTER(out);
+
+    // handle one point at a time
+    ClipperLib::IntPoint pti;
+    for(i = 0; i < np; i++) {
+      ScaleToPoint(xp[i], yp[i], pti, x0, y0, eps);
+      result[i] = PointInPolygon(pti, pathA);
+    }
+    
+    UNPROTECT(6);
     return(out);
   }
 }

@@ -50,6 +50,11 @@ SEXP Cminksum(SEXP A,
 	      SEXP Y0,
 	      SEXP Eps);
 
+SEXP Cpiptest(SEXP P,
+	      SEXP A,
+	      SEXP X0,
+	      SEXP Y0,
+	      SEXP Eps); 
 
 static const R_CMethodDef CEntries[] = {
     {NULL, NULL, 0}
@@ -61,6 +66,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"Cpolyoffset",      (DL_FUNC) &Cpolyoffset,       8},
     {"Clineoffset",      (DL_FUNC) &Clineoffset,       9},
     {"Cminksum",         (DL_FUNC) &Cminksum,          6},
+    {"Cpiptest",         (DL_FUNC) &Cpiptest,          5},
     {NULL, NULL, 0}
 };
 
