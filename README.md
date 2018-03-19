@@ -10,7 +10,7 @@ This repository holds the contributed R-package `polyclip`, which is
 an R port of Angus Johnson's library 
 [Clipper](http://angusj.com/delphi/clipper.php) for polygon clipping.
 
-## Version
+## Version of Clipper Library
 
 This version of `polyclip` is derived from 
 Clipper C++ library version `6.4.0 [r496]` which was obtained from the
@@ -19,6 +19,10 @@ Clipper C++ library version `6.4.0 [r496]` which was obtained from the
 Minor changes have been made to the C++ code to satisfy the
 requirements for R packages (namely, data type declarations must be portable,
 and error messages must go through R's error handler). 
+
+**Note:** If your system already includes the `polyclipping` library (another derivative of `clipper`)
+then **that version of the library will be used** (i.e. the R package `polyclip` will be compiled against
+the executable library `polyclipping`, rather than `clipper 6.4.0`.) 
 
 ## Installation
 
