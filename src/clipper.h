@@ -88,22 +88,15 @@ enum PolyFillType { pftEvenOdd, pftNonZero, pftPositive, pftNegative };
   static cInt const hiRange = 0x7FFF;
 #else
   // ajb start
-#ifdef POLYCLIP_LONG64
-  // 64-bit types in <stdint.h> are found using a configuration script 
+  // 64-bit types in <stdint.h> were found using a configuration script 
 #include <stdint.h>
 typedef POLYCLIP_LONG64 cInt;
 typedef POLYCLIP_LONG64 long64;
 typedef POLYCLIP_ULONG64 ulong64;
-#else
-  // e.g. Windows
-  typedef signed long long cInt;
-  typedef signed long long long64;  //used by Int128 class
-  typedef unsigned long long ulong64; 
-#endif
-  static cInt const loRange = 0x3FFFFFFF;
-  // was: static cInt const hiRange = 0x3FFFFFFFFFFFFFFFLL;
-  static cInt const hiRange = (((cInt) 0x3FFFFFFF) << 32 | 0xFFFFFFFF);
-  // ajb end
+static cInt const loRange = 0x3FFFFFFF;
+static cInt const hiRange = (((cInt) 0x3FFFFFFF) << 32 | 0xFFFFFFFF);
+ // was: static cInt const hiRange = 0x3FFFFFFFFFFFFFFFLL;
+ // ajb end
 #endif
 
 struct IntPoint {

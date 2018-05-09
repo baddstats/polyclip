@@ -1,2 +1,3 @@
 CXX_STD = CXX11
-PKG_CPPFLAGS = 
+PKG_CPPFLAGS = -DPOLYCLIP_LONG64="signed long long" -DPOLYCLIP_ULONG64="unsigned long long"
+

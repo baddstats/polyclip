@@ -20,9 +20,13 @@ Minor changes have been made to the C++ code to satisfy the
 requirements for R packages (namely, data type declarations must be portable,
 and error messages must go through R's error handler). 
 
-**Note:** If your system already includes the `polyclipping` library (another derivative of `clipper`)
-then **that version of the library will be used** (i.e. the R package `polyclip` will be compiled against
-the executable library `polyclipping`, rather than `clipper 6.4.0`.) 
+**Note:** If your system already includes the `polyclipping` library
+(another derivative of `clipper`)
+then **that version of the library will be used**.
+That is, the R package `polyclip` will be compiled against
+the executable library `polyclipping` on your system,
+rather than using the bundled source code of `clipper 6.4.0`
+that comes with the `polyclip` sources.
 
 ## Installation
 

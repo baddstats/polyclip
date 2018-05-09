@@ -25,3 +25,4 @@ src/*o
 configure
 config.*
 src/Makevars
+autom4te.cache
