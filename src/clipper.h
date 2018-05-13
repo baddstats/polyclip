@@ -82,6 +82,16 @@ enum PolyType { ptSubject, ptClip };
 //see http://glprogramming.com/red/chapter11.html
 enum PolyFillType { pftEvenOdd, pftNonZero, pftPositive, pftNegative };
 
+// ajb start 
+#ifndef POLYCLIP_LONG64
+// This should not happen!! Probably the configure file was not executed
+// Fall back to 32 bits
+#ifndef use_32
+#define use_32
+#endif
+#endif
+// ajb end
+ 
 #ifdef use_int32
   typedef int cInt;
   static cInt const loRange = 0x7FFF;

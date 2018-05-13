@@ -1,6 +1,6 @@
+#include "clipper.h"
 #include <R.h>
 #include <Rdefines.h>
-#include "clipper.h"
 
 using namespace std;
 using namespace ClipperLib;
