@@ -50,7 +50,7 @@ artifacts:
 deploy:
   provider: GitHub
   auth_token:
-    secure: TAti5R3iqVWn6zyRuWY/0YbgmJs+5M2Ipync4rs9UdyszqOtK7gzgCS1yWCJIrMK
+    secure: JTQgGqunZXLviRDLkYL5BATyY59WDDcviRFy0F8e6F8/ilVzfCcg/hlidtpZqObw
   artifact: /\*_*.zip/
   on:
     branch:
