@@ -3,7 +3,7 @@
 #
 # Interface to Clipper C++ code
 #
-#  $Revision: 1.14 $ $Date: 2018/03/01 13:35:53 $
+#  $Revision: 1.15 $ $Date: 2018/06/14 02:02:36 $
 #
 
 validxy <- function(P) {
@@ -52,8 +52,9 @@ polysimplify <-
     A <- ensuredouble(A)
     storage.mode(pft) <- "integer"
     storage.mode(x0) <- storage.mode(y0) <- storage.mode(eps) <- "double"
-    result <- .Call("Csimplify",
-                    A, pft, x0, y0, eps)
+    result <- .Call(eCsimplify,
+                    A, pft, x0, y0, eps,
+                    PACKAGE="polyclip")
     return(aspolygonlist(result))
   }
 
@@ -96,9 +97,10 @@ polyclip <-
     B <- ensuredouble(B)
     storage.mode(ct) <- storage.mode(pftA) <- storage.mode(pftB) <- "integer"
     storage.mode(x0) <- storage.mode(y0) <- storage.mode(eps) <- "double"
-    ans <- .Call("Cclipbool",
+    ans <- .Call(eCclipbool,
                  A, B, pftA, pftB, ct,
-                 x0, y0, eps)
+                 x0, y0, eps,
+                 PACKAGE="polyclip")
     return(aspolygonlist(ans))
   }
 
@@ -133,8 +135,10 @@ polyoffset <-
     storage.mode(delta) <-
       storage.mode(miterlim) <- storage.mode(arctol) <- "double"
     storage.mode(x0) <- storage.mode(y0) <- storage.mode(eps) <- "double"
-    ans <- .Call("Cpolyoffset", A, delta, jt,
-                 miterlim, arctol, x0, y0, eps)
+    ans <- .Call(eCpolyoffset,
+                 A, delta, jt,
+                 miterlim, arctol, x0, y0, eps,
+                 PACKAGE="polyclip")
     return(aspolygonlist(ans))
   }
 
@@ -181,8 +185,10 @@ polylineoffset <-
     storage.mode(delta) <- storage.mode(miterlim) <-
       storage.mode(arctol) <- "double"
     storage.mode(x0) <- storage.mode(y0) <- storage.mode(eps) <- "double"
-    ans <- .Call("Clineoffset", A, delta, jt, et,
-                 miterlim, arctol, x0, y0, eps)
+    ans <- .Call(eClineoffset,
+                 A, delta, jt, et,
+                 miterlim, arctol, x0, y0, eps,
+                 PACKAGE="polyclip")
     return(aspolygonlist(ans))
   }
 
@@ -220,8 +226,9 @@ polyminkowski <-
     B <- ensuredouble(B)
     storage.mode(x0) <- storage.mode(y0) <- storage.mode(eps) <- "double"
     storage.mode(closed) <- "logical"
-    result <- .Call("Cminksum",
-                    A, B, closed, x0, y0, eps)
+    result <- .Call(eCminksum,
+                    A, B, closed, x0, y0, eps,
+                    PACKAGE="polyclip")
     return(aspolygonlist(result))
   }
 
@@ -244,8 +251,9 @@ pointinpolygon <-
     A <- ensurexydouble(A)
     P <- ensurexydouble(P)
     storage.mode(x0) <- storage.mode(y0) <- storage.mode(eps) <- "double"
-    ans <- .Call("Cpiptest",
+    ans <- .Call(eCpiptest,
                  P, A,
-                 x0, y0, eps)
+                 x0, y0, eps,
+                 PACKAGE="polyclip")
     return(ans)
   }

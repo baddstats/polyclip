@@ -1,4 +1,2 @@
 export(polyclip,polyoffset,polylineoffset,polysimplify,polyminkowski,pointinpolygon)
-useDynLib(polyclip,
-          "Cclipbool","Cpolyoffset","Clineoffset","Csimplify",
-          "Cminksum","Cpiptest")
+useDynLib(polyclip, .registration=TRUE, .fixes="e")

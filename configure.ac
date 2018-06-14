@@ -1,4 +1,4 @@
-AC_INIT(polyclip,[1.8-7])
+AC_INIT(polyclip,[1.9-0])
 AC_PROG_CXX
 AC_LANG([C++])
 dnl Determine version of R
