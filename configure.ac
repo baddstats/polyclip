@@ -1,6 +1,4 @@
-AC_INIT(polyclip,[1.9-0])
-AC_PROG_CXX
-AC_LANG([C++])
+AC_INIT(polyclip,[1.9-1])
 dnl Determine version of R
 CXX11FUN=`"${R_HOME}/bin/Rscript" -e 'if(getRversion() < "3.4") cat("CXX1X", fill=TRUE) else cat("CXX11", fill=TRUE)'`
 dnl Check for presence of C++11 
@@ -18,6 +16,8 @@ else
    CXXFLAGS=`"${R_HOME}/bin/R" CMD config CXXFLAGS`
 fi
 CPPFLAGS=`"${R_HOME}/bin/R" CMD config CPPFLAGS`
+AC_PROG_CXX
+AC_LANG([C++])
 dnl Check for pkgconf or pkg-config
 if test -z "$PKG_CONFIG"; then
    if command -v pkgconf 2>&1 > /dev/null; then

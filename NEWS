@@ -1,4 +1,11 @@
 
+        CHANGES IN polyclip VERSION 1.9-1
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Changes to installation procedure (namely the choice of C++ compiler)
+    to comply with CRAN requirements.
+
         CHANGES IN polyclip VERSION 1.9-0
 
 SIGNIFICANT USER-VISIBLE CHANGES
