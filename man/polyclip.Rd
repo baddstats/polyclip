@@ -2,7 +2,8 @@
 \alias{polyclip}
 \title{Polygon Clipping}
 \description{
-  Find intersection, union or set difference of two polygonal regions.
+  Find intersection, union or set difference of two polygonal regions
+  or polygonal lines.
 }
 \usage{
  polyclip(A, B, op=c("intersection", "union", "minus", "xor"),
@@ -16,12 +17,28 @@
   \item{A,B}{
     Data specifying polygons. See Details.
   }
-  \item{op}{Set operation to be performed to combine \code{A} and \code{B}.}
+  \item{op}{
+    Set operation to be performed to combine \code{A} and \code{B}.
+    One of the character strings \code{"intersection"},
+    \code{"union"}, \code{"minus"} or \code{"xor"} (partially matched).
+  }
   \item{\dots}{Ignored.}
-  \item{eps}{Spatial resolution for coordinates.}
-  \item{x0,y0}{Spatial origin for coordinates.}
-  \item{fillA,fillB}{Polygon-filling rule for \code{A} and \code{B}.}
-  \item{closed}{Whether \code{A} is a closed shape or an open shape (a line).}
+  \item{eps}{
+    Spatial resolution for coordinates. A single positive
+    numeric value.
+  }
+  \item{x0,y0}{Spatial origin for coordinates. Numeric values.}
+  \item{fillA,fillB}{
+    Polygon-filling rules for \code{A} and \code{B}.
+    Each argument is one of the character strings
+    \code{"evenodd"}, \code{"nonzero"}, \code{"positive"} or
+    \code{"negative"} (partially matched).
+  }
+  \item{closed}{
+    Logical value specifying whether \code{A} is a
+    closed polygon (\code{closed=TRUE}, the default)
+    or an open polyline (\code{closed=FALSE}).
+  }
 }
 \value{
   Data specifying polygons, in the same format as \code{A} and \code{B}.
@@ -99,9 +116,11 @@
   \code{\link{polylineoffset}},
   \code{\link{polyminkowski}}
 }
-\author{Angus Johnson.
+\author{
+  Angus Johnson.
   Ported to \R by Adrian Baddeley
   \email{Adrian.Baddeley@curtin.edu.au}.
+  Additional modification by Paul Murrell.
 }
 \examples{
   A <- list(list(x=1:10, y=c(1:5,5:1)))
@@ -111,6 +130,10 @@
   polygon(B[[1]])
   C <- polyclip(A, B)
   polygon(C[[1]], lwd=3, col=3)
+
+  D <- list(list(x=c(2,8,8),y=c(0,0,10)))
+  E <- polyclip(D, B, closed=FALSE)
+  do.call(lines, append(E[[1]], list(col=8, lwd=3)))
 }
 \references{
   Clipper Website: \url{http://www.angusj.com}

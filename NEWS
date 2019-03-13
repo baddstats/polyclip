@@ -1,7 +1,11 @@
 
-        CHANGES IN polyclip VERSION 1.91-0
+        CHANGES IN polyclip VERSION 1.10-0
 
-    o 
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o polyclip
+    New argument 'closed' specifies whether the paths are closed or open.
+    [Thanks to Paul Murrell.]
 
         CHANGES IN polyclip VERSION 1.9-1
 
