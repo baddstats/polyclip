@@ -166,9 +166,11 @@ extern "C" {
 		 SEXP ct,
 		 SEXP X0,
                  SEXP Y0,
-                 SEXP Eps
+                 SEXP Eps,
+                 SEXP clo // whether paths in A are closed
 		 ){ 
     int nA, nB, i, n, m, mi, mitrue;
+    bool closed;
     double *x, *y, *xx, *yy;
     SEXP Ai = R_NilValue, Bi = R_NilValue;
     SEXP out, outi, xouti, youti;
@@ -180,6 +182,7 @@ extern "C" {
     // protect arguments from garbage collector    
     PROTECT(A   = AS_LIST(A));
     PROTECT(B   = AS_LIST(B));
+    PROTECT(clo = AS_LOGICAL(clo));
     PROTECT(ct  = AS_INTEGER(ct));
     PROTECT(pftA  = AS_INTEGER(pftA));
     PROTECT(pftB  = AS_INTEGER(pftB));
@@ -193,6 +196,7 @@ extern "C" {
 
     // Initialise object containing n polygons
     Paths polyA(nA), polyB(nB);
+    closed = *(LOGICAL_POINTER(clo));
 
     // Get scale parameters
     x0 = *(NUMERIC_POINTER(X0));
@@ -271,9 +275,16 @@ extern "C" {
     // perform clipping operation
     Clipper c;
     Paths result;
-    c.AddPaths(polyA, ptSubject, true);
+    c.AddPaths(polyA, ptSubject, closed);
     c.AddPaths(polyB, ptClip, true);
-    c.Execute(cliptype, result, filltypeA, filltypeB);
+
+    if (closed) {
+        c.Execute(cliptype, result, filltypeA, filltypeB);
+    } else {
+        PolyTree polyTreeResult;
+        c.Execute(cliptype, polyTreeResult, filltypeA, filltypeB);
+        OpenPathsFromPolyTree(polyTreeResult, result);
+    }
 
     // number of polygons
     m = result.size();
@@ -300,7 +311,7 @@ extern "C" {
       }
     }
 
-    UNPROTECT(9 + 3*m); // 8 arguments + out + m * (outi, xouti, youti)
+    UNPROTECT(10 + 3*m); // 9 arguments + out + m * (outi, xouti, youti)
     return(out);
   }
 }

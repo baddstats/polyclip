@@ -22,7 +22,8 @@ SEXP Cclipbool(SEXP A,
 	       SEXP ct,
 	       SEXP X0,
 	       SEXP Y0,
-	       SEXP Eps); 
+	       SEXP Eps,
+               SEXP clo); 
 
 SEXP Cpolyoffset(SEXP A,
 		 SEXP del,
@@ -62,7 +63,7 @@ static const R_CMethodDef CEntries[] = {
   
 static const R_CallMethodDef CallEntries[] = {
     {"Csimplify",        (DL_FUNC) &Csimplify,         5},
-    {"Cclipbool",        (DL_FUNC) &Cclipbool,         8},
+    {"Cclipbool",        (DL_FUNC) &Cclipbool,         9},
     {"Cpolyoffset",      (DL_FUNC) &Cpolyoffset,       8},
     {"Clineoffset",      (DL_FUNC) &Clineoffset,       9},
     {"Cminksum",         (DL_FUNC) &Cminksum,          6},

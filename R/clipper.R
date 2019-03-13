@@ -64,7 +64,8 @@ polyclip <-
            ...,
            eps, x0, y0,
            fillA=c("evenodd", "nonzero", "positive", "negative"),
-           fillB=c("evenodd", "nonzero", "positive", "negative")
+           fillB=c("evenodd", "nonzero", "positive", "negative"),
+           closed=TRUE
            ) {
     # validate parameters and convert to integer codes
     op <- match.arg(op)
@@ -82,6 +83,7 @@ polyclip <-
       if(validxy(B)) B <- list(B) else
       stop("Argument B should be a list of lists, each containing vectors x,y")
     }
+    # 
     # determine value of 'eps' if missing
     if(missing(eps) || missing(x0) || missing(y0)) {
       xr <- range(range(unlist(lapply(A, xrange))),
@@ -97,9 +99,10 @@ polyclip <-
     B <- ensuredouble(B)
     storage.mode(ct) <- storage.mode(pftA) <- storage.mode(pftB) <- "integer"
     storage.mode(x0) <- storage.mode(y0) <- storage.mode(eps) <- "double"
+    storage.mode(closed) <- "logical"
     ans <- .Call(eCclipbool,
                  A, B, pftA, pftB, ct,
-                 x0, y0, eps,
+                 x0, y0, eps, closed,
                  PACKAGE="polyclip")
     return(aspolygonlist(ans))
   }

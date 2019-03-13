@@ -9,7 +9,8 @@
          \dots,
          eps, x0, y0,
          fillA=c("evenodd", "nonzero", "positive", "negative"),
-         fillB=c("evenodd", "nonzero", "positive", "negative"))
+         fillB=c("evenodd", "nonzero", "positive", "negative"),
+         closed = TRUE)
 }
 \arguments{
   \item{A,B}{
@@ -20,6 +21,7 @@
   \item{eps}{Spatial resolution for coordinates.}
   \item{x0,y0}{Spatial origin for coordinates.}
   \item{fillA,fillB}{Polygon-filling rule for \code{A} and \code{B}.}
+  \item{closed}{Whether \code{A} is a closed shape or an open shape (a line).}
 }
 \value{
   Data specifying polygons, in the same format as \code{A} and \code{B}.
