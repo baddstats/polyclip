@@ -4,7 +4,8 @@
 SIGNIFICANT USER-VISIBLE CHANGES
 
     o polyclip
-    New argument 'closed' specifies whether the paths are closed or open.
+    Now handles polygonal lines as well as closed polygons.
+    New argument 'closed' specifies whether A is a closed polygon.
     [Thanks to Paul Murrell.]
 
         CHANGES IN polyclip VERSION 1.9-1

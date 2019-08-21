@@ -125,15 +125,20 @@
 \examples{
   A <- list(list(x=1:10, y=c(1:5,5:1)))
   B <- list(list(x=c(2,8,8,2),y=c(0,0,10,10)))
-  plot(c(0,10),c(0,10), type="n", axes=FALSE, xlab="", ylab="")
-  polygon(A[[1]])
-  polygon(B[[1]])
+
+  plot(c(0,10),c(0,10), type="n", axes=FALSE,
+    xlab="", ylab="", main="intersection of closed polygons")
+  invisible(lapply(A, polygon))
+  invisible(lapply(B, polygon))
   C <- polyclip(A, B)
   polygon(C[[1]], lwd=3, col=3)
 
-  D <- list(list(x=c(2,8,8),y=c(0,0,10)))
-  E <- polyclip(D, B, closed=FALSE)
-  do.call(lines, append(E[[1]], list(col=8, lwd=3)))
+  plot(c(0,10),c(0,10), type="n", axes=FALSE,
+    xlab="", ylab="", main="intersection of open polyline and closed polygon")
+  invisible(lapply(A, polygon))
+  invisible(lapply(B, polygon))
+  E <- polyclip(A, B, closed=FALSE)
+  invisible(lapply(E, lines, col="purple", lwd=5))
 }
 \references{
   Clipper Website: \url{http://www.angusj.com}
