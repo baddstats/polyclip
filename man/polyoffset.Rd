@@ -110,7 +110,7 @@
 
   Vatti, B. (1992) A generic solution to polygon clipping.
   \emph{Communications of the ACM} \bold{35} (7) 56--63.
-  \url{http://portal.acm.org/citation.cfm?id=129906}
+  \url{https://portal.acm.org/citation.cfm?id=129906}
 
   Agoston, M.K. (2005)
   \emph{Computer graphics and geometric modeling:
@@ -124,7 +124,7 @@
   (ASME 2005 International Design Engineering Technical Conferences
   and Computers and Information in Engineering Conference),
   pp. 565--575
-  \url{http://www.me.berkeley.edu/~mcmains/pubs/DAC05OffsetPolygon.pdf}
+  \url{https://www.me.berkeley.edu/~mcmains/pubs/DAC05OffsetPolygon.pdf}
 }
 \keyword{spatial}
 \keyword{math}
