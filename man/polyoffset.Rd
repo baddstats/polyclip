@@ -110,7 +110,7 @@
 
   Vatti, B. (1992) A generic solution to polygon clipping.
   \emph{Communications of the ACM} \bold{35} (7) 56--63.
-  \url{https://dl.acm.org/citation.cfm?id=129906}
+  \url{https://dl.acm.org/doi/10.1145/129902.129906}
 
   Agoston, M.K. (2005)
   \emph{Computer graphics and geometric modeling:
