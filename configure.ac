@@ -1,20 +1,5 @@
 AC_INIT(polyclip,[1.9-1])
-dnl Determine version of R
-CXX11FUN=`"${R_HOME}/bin/Rscript" -e 'if(getRversion() < "3.4") cat("CXX1X", fill=TRUE) else cat("CXX11", fill=TRUE)'`
-dnl Check for presence of C++11 
-CXX1X=`"${R_HOME}/bin/R" CMD config "${CXX11FUN}"`
-if test "${CXX1X}" != ""; then
-   echo "compiling under C++11"
-   CXX1XSTD=`"${R_HOME}/bin/R" CMD config "${CXX11FUN}STD"`
-   CXX="${CXX1X} ${CXX1XSTD}"
-   POLYCLIP_CXX_DECLAR="CXX_STD = CXX11"
-   CXXFLAGS=`"${R_HOME}/bin/R" CMD config "${CXX11FUN}FLAGS"`
-else
-   echo "C++11 is not supported; compiling under vanilla C++"
-   CXX=`"${R_HOME}/bin/R" CMD config CXX`
-   POLYCLIP_CXX_DECLAR=""
-   CXXFLAGS=`"${R_HOME}/bin/R" CMD config CXXFLAGS`
-fi
+CXXFLAGS=`"${R_HOME}/bin/R" CMD config CXXFLAGS`
 CPPFLAGS=`"${R_HOME}/bin/R" CMD config CPPFLAGS`
 AC_PROG_CXX
 AC_LANG([C++])
@@ -113,7 +98,6 @@ AC_SUBST(POLYCLIP_CPPFLAGS)
 AC_SUBST(POLYCLIP_CXXFLAGS)
 AC_SUBST(POLYCLIP_LIBS)
 AC_SUBST(POLYCLIP_OBJECTS)
-AC_SUBST(POLYCLIP_CXX_DECLAR)
 AC_CONFIG_FILES([src/Makevars])
 AC_OUTPUT
 
