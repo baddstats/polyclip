@@ -12,8 +12,8 @@ an R port of Angus Johnson's library
 
 ## Version of Clipper Library
 
-This version of `polyclip` is derived from 
-Clipper C++ library version `6.4.0 [r496]` which was obtained from the
+This version of `polyclip` is derived from Clipper1, the original version of
+the Clipper C++ library, version `6.4.0 [r496]` which was obtained from the
 [Sourceforge repository](https://sourceforge.net/projects/polyclipping)
 (click `Code` then `Download snapshot`).
 Minor changes have been made to the C++ code to satisfy the
