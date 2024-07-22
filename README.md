@@ -3,7 +3,7 @@ polyclip
 
 [![Travis-CI Build Status](https://travis-ci.org/baddstats/polyclip.png?branch=master)](https://travis-ci.org/baddstats/polyclip)
 [![codecov.io](https://codecov.io/github/baddstats/polyclip/coverage.svg?branch=master)](https://codecov.io/github/baddstats/polyclip?branch=master)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/polyclip)](http://cran.r-project.org/web/packages/polyclip)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/polyclip)](http://cran.r-project.org/web/packages/polyclip)
 [![Research software impact](http://depsy.org/api/package/cran/polyclip/badge.svg)](http://depsy.org/package/r/polyclip)
 
 This repository holds the contributed R-package `polyclip`, which is
