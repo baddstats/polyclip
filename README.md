@@ -56,10 +56,10 @@ install.packages('remotes')
 When trying to install `polyclip`, some users get an error message
 like the following:
 ```R
-    configure: error: in /tmp/Rtmp7967a6f2/polyclip':
+    configure: error: in /tmp/Rtmp7967a6f2/polyclip:
     configure: error: C++ compiler cannot create executables
-    See config.log' for more details
-    ERROR: configuration failed for package ‘polyclip’
+    See config.log for more details
+    ERROR: configuration failed for package 'polyclip'
 ```
 This is a problem with file permissions on your system.
 If this happens to you, the simplest solution is:
