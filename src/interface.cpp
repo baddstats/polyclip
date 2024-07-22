@@ -2,6 +2,8 @@
 #include <R.h>
 #include <Rdefines.h>
 
+#define ERREUR(MESSAGE) Rf_error(MESSAGE)
+
 using namespace std;
 using namespace ClipperLib;
 
@@ -119,7 +121,7 @@ extern "C" {
       filltype = pftNegative;
       break;
     default: 
-      error("polyclip: unrecognised code for fill type A");
+      ERREUR("polyclip: unrecognised code for fill type A");
     }
 
     // simplify polygon;
@@ -237,7 +239,7 @@ extern "C" {
       cliptype = ctXor;
       break;
     default: 
-      error("polyclip: unrecognised code for cliptype");
+      ERREUR("polyclip: unrecognised code for cliptype");
     }
     switch(pftAcode) {
     case 1: 
@@ -253,7 +255,7 @@ extern "C" {
       filltypeA = pftNegative;
       break;
     default: 
-      error("polyclip: unrecognised code for fill type A");
+      ERREUR("polyclip: unrecognised code for fill type A");
     }
     switch(pftBcode) {
     case 1: 
@@ -269,7 +271,7 @@ extern "C" {
       filltypeB = pftNegative;
       break;
     default: 
-      error("polyclip: unrecognised code for fill type B");
+      ERREUR("polyclip: unrecognised code for fill type B");
     }
 
     // perform clipping operation
@@ -380,7 +382,7 @@ extern "C" {
       jointype = jtMiter;
       break;
     default: 
-      error("polyclip: unrecognised code for jointype");
+      ERREUR("polyclip: unrecognised code for jointype");
     }
 
     // get parameters
@@ -497,7 +499,7 @@ extern "C" {
       jointype = jtMiter;
       break;
     default: 
-      error("polyclip: unrecognised code for jointype");
+      ERREUR("polyclip: unrecognised code for jointype");
     }
     etcode = *(INTEGER_POINTER(et));
     switch(etcode) {
@@ -517,7 +519,7 @@ extern "C" {
       endtype = etOpenRound;
       break;
     default: 
-      error("polyclip: unrecognised code for endtype");
+      ERREUR("polyclip: unrecognised code for endtype");
     }
 
     // get parameters

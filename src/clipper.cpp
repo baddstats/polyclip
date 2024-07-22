@@ -74,7 +74,7 @@
 #define THROWCLIPPER(A) throw clipperException(A)
 #define THROWBLANK(A) throw
 #else
-#define THROW(A) error(A)
+#define THROW(A) Rf_error(A)
 #define THROWCLIPPER(A) THROW(A)
 #define THROWBLANK(A) THROW(A)
 #endif
