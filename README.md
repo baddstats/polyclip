@@ -51,6 +51,24 @@ If you don't have `remotes` installed you should first run
 install.packages('remotes')
 ```
 
+## Trouble installing?
+
+When trying to install `polyclip`, some users get an error message
+like the following:
+```R
+    configure: error: in /tmp/Rtmp7967a6f2/polyclip':
+    configure: error: C++ compiler cannot create executables
+    See config.log' for more details
+    ERROR: configuration failed for package ‘polyclip’
+```
+This is a problem with file permissions on your system.
+If this happens to you, the simplest solution is:
+```R
+    wget https://cran.r-project.org/src/contrib/polyclip_1.10-7.tar.gz
+    tar -zxvf polyclip_1.10-7.tar.gz
+    Rscript -e "library('devtools'); devtools::install('polyclip')"
+```
+
 ## Bug reports 
 
 Users of `polyclip` are encouraged to report bugs here 
